@@ -13,16 +13,16 @@
     <div class="container"> 
       <div class="menu_inner">
         <div class="logo">
-          <img src="imgoleg/oleg.png" alt="логотип">
+      <a href="oleg.html">
+      <img src="imgoleg/oleg.png" alt="логотип">
+      </a>
         </div>
       <ul class="nav"> 
-        <li><a href="#" class="active">Домой</a></li>
-        <li><a href="#" class="active">Сервис</a></li>
-        <li><a href="#" class="active">О нас</a></li>
-        <li><a href="#" class="active">Наши работы</a></li>
-        <li><a href="#" class="active">Как мы работаем</a></li> 
-        <li><a href="#" class="active">Отзывы</a></li>
-        <li><a href="#" class="active">Контакты</a></li>
+        <li><a href="services.html">Сервис</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="works.html">Наши работы</a></li>
+        <li><a href="reviews.html">Отзывы</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
       </ul>
     </div>
   </div>
@@ -30,34 +30,37 @@
   <div class="box">
     <div class="inator">
       <div class="box_inner">
-        <div class="item">
+        <div class="item phone">
           <i class="fas fa-phone"></i>
-          <div class="number">3587</div>
+        <div class="number">
+        +7-965-433-08-88
+      </div>
           <div class="text">Контакты</div>
           <div class="line"></div>
         </div>
-        <div class="item">
+
+
+        <div class="item email">
           <i class="far fa-envelope"></i>
-          <div class="number">3587</div>
+          <div class="number">remontsmartfonrff@gmail.com</div>
           <div class="text">Почта</div>
           <div class="line"></div>
         </div>
-        <div class="item">
+        <div class="item address"">
           <i class="fas fa-home"></i> 
-          <div class="number">3587</div>
-          <div class="text">Где мы находимся</div>
-          <div class="line"></div>
+          <div class="number">
+          <p>ТГ Черемушки</p>
+          <p>Профсоюзная 56</p>
+          <p>2 этаж</p>
+          <p>павильон 2Ж07СТ</p>
         </div>
-        <div class="item">
-          <i class="fab fa-whatsapp"></i>
-          <div class="number">3587</div>
-          <div class="text">WhatsApp</div>
-          <div class="line"></div>
-        </div>
-        <div class="item">
-          <i class="fas fa-file"></i>
-          <div class="number">3587</div>
-          <div class="text">Oleg krasava</div>
+  <div class="text">Где мы находимся</div>
+  <div class="line"></div>
+  </div>
+        <div class="item telegram">
+          <i class="fab fa-telegram"></i>
+          <div class="number">@RemontSmartfonRf</div>
+          <div class="text">Telegram</div>
           <div class="line"></div>
         </div>
       </div>
@@ -68,10 +71,20 @@
       <h1>Профессиональный ремонт телефонов в кратчайшие сроки</h1>
       <p>Наш сервис работает более 10 лет. Быстро, качественно и с гарантией — 
 подробнее
-      <a href="#" class="yandex-link">в Яндекс Карточке</a>.
+      <a href="https://yandex.ru/maps/org/remont_smartfon_rf/183617825879?si=0dpjxpc2x5kre1m2b1kuq9k5pg"
+        class="yandex-link"
+        target="_blank" 
+        rel="noopener noreferrer">
+        в Яндекс Карточке
+      </a>.
       </p>
         <div class="cta">
-  <a class="btn" href="#">Записаться на ремонт</a>
+  <a class="btn"
+      href="https://t.me/RemontSmartfonRf"
+      target="_blank"
+      rel="noopener noreferrer">
+      Записаться на ремонт
+  </a>
       </div>
     </div>
   </div>
@@ -131,6 +144,82 @@
 </div>
 
 <a href="#" class="to-top" aria-label="Наверх">↑</a>
+
+<script>
+(function () {
+  // делаем все всплывающие .number кликабельными и доступными с клавиатуры
+  const numbers = document.querySelectorAll('.item .number');
+  numbers.forEach(el => {
+    el.tabIndex = 0;                 // фокус по Tab
+    el.setAttribute('role','button');
+    el.setAttribute('aria-label','Скопировать');
+
+    // визуально — курсор руки
+    el.style.cursor = 'pointer';
+
+    const copyHandler = () => {
+      // innerText — чтобы адрес копировался с переносами строк
+      const text = el.innerText.trim();
+      if (!text) return;
+
+      const doToast = () => {
+        // короткая замена содержимого на "Скопировано!"
+        const prev = el.innerHTML;
+        el.innerText = 'Скопировано!';
+        el.classList.add('is-copied');
+        setTimeout(() => {
+          el.innerHTML = prev;
+          el.classList.remove('is-copied');
+        }, 1200);
+      };
+
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(text).then(doToast).catch(() => {
+          // фолбэк
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch(e){}
+          document.body.removeChild(ta);
+          doToast();
+        });
+      } else {
+        // старые браузеры
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch(e){}
+        document.body.removeChild(ta);
+        doToast();
+      }
+    };
+
+    el.addEventListener('click', copyHandler);
+    // копирование по Enter/Space
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        copyHandler();
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+// Подсветка активного пункта меню по текущему URL
+(function () {
+  const page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  document.querySelectorAll('.nav a').forEach(a => {
+    const href = (a.getAttribute('href') || '').toLowerCase();
+    if (href === page) a.classList.add('active');
+    else a.classList.remove('active');
+  });
+})();
+</script>
+
 
 </body>
 </html>

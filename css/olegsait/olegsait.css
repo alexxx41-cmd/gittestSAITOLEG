@@ -12,7 +12,7 @@
   --radius:16px;
   --shadow:0 6px 18px rgba(0,0,0,.12);
 }
-хуй
+
 :root{
   /* .переменные  */
   --grad: radial-gradient(1200px circle at 50% 0, var(--bg1) 0%, var(--bg2) 100%);
@@ -136,8 +136,13 @@
 }
 .number {
   color:#fff;
-  font-size: 70px;
+  font-size: 17px;
 }
+
+.number p {
+  margin: 2px 0;  /* расстояние между строками */
+}
+
 .text {
   color:#161616;
   font-family: sans-serif;
@@ -453,4 +458,165 @@ body{
 
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; }
+}
+
+/* Общая база для всплывашек */
+.item{
+  position: relative;
+}
+
+.item .number{
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 8px) scale(.98);
+  opacity: 0;
+  pointer-events: none;
+
+  min-width: 220px;
+  padding: 10px 12px;
+  text-align: center;
+
+  background: var(--glass-bg);
+  border: var(--glass-br);
+  border-radius: 12px;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.22);
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 10;
+}
+
+/* стрелочка */
+.item .number::before{
+  content: "";
+  position: absolute;
+  top: -6px; left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px; height: 12px;
+  background: var(--glass-bg);
+  border-left: var(--glass-br);
+  border-top: var(--glass-br);
+  border-radius: 3px 0 0 0;
+}
+
+/* текст внутри */
+.item .number p,
+.item .number{
+  margin: 0;
+  color: #eaeaea;
+  font-size: 15.5px;
+  line-height: 1.25;
+}
+
+.item .number p:first-child{
+  color: #fff; font-weight: 600;
+}
+
+/* ПОКАЗ при наведении */
+.item:hover .number{
+  opacity: 1;
+  transform: translate(-50%, 12px) scale(1);
+  pointer-events: auto;
+}
+
+.item:hover .number,
+.item .number:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* === ВСПЛЫВАШКИ ПОД ИКОНКАМИ (тел/почта/адрес/тг) === */
+.item{
+  position: relative;
+  /* расширяем зону ховера вниз, чтобы плашка не "убегала" */
+  padding-bottom: 10px; /* можно 72–96 по вкусу */
+}
+
+/* сама плашка */
+.item .number{
+  position: absolute;
+  left: 50%;
+  top: 100%;                       /* сразу под иконкой */
+  transform: translate(-50%, 12px) scale(.98);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 10;
+
+  min-width: 220px;
+  padding: 10px 12px;
+  text-align: center;
+
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.22);
+
+  transition:
+    opacity .2s ease,
+    transform .2s ease,
+    visibility 0s linear .2s; /* чтобы не мигала при скрытии */
+}
+
+/* стрелочка */
+.item .number::before{
+  content:"";
+  position:absolute;
+  top:-6px; left:50%;
+  transform: translateX(-50%) rotate(45deg);
+  width:12px; height:12px;
+  background: rgba(255,255,255,.08);
+  border-left: 1px solid rgba(255,255,255,.15);
+  border-top: 1px solid rgba(255,255,255,.15);
+  border-radius: 3px 0 0 0;
+}
+
+/* невидимый "мостик", чтобы ховер не рвался
+   когда ведёшь курсор с иконки на плашку */
+.item .number::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:-12px; height:12px;
+}
+
+/* текст внутри */
+.item .number,
+.item .number p{
+  margin: 0;
+  color: #eaeaea;
+  font-size: 15.5px;
+  line-height: 1.25;
+}
+.item .number p:first-child{
+  color:#fff; font-weight:600;
+}
+
+/* показываем плашку:
+   - когда наводим на .item
+   - когда держим курсор на самой плашке
+   - и когда элемент получил фокус из JS (копирование) */
+.item:hover .number,
+.item .number:hover,
+.item:focus-within .number{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 12px) scale(1);
+  transition:
+    opacity .2s ease,
+    transform .2s ease,
+    visibility 0s; /* показывать сразу */
+}
+
+/* курсор-рука для кликабельных */
+.item.phone .number,
+.item.email .number,
+.item.telegram .number{
+  cursor: pointer;
+}
+
+/* лёгкая подсветка на момент "скопировано" (по желанию) */
+.number.copied{
+  box-shadow: 0 16px 36px rgba(0,0,0,.28);
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>О нас — Ремонт смартфонов</title>
+  <link rel="stylesheet" href="css/olegsait/all.min.css">
+  <link rel="stylesheet" href="css/olegsait/fontawesome.min.css">
+  <link rel="stylesheet" href="css/olegsait/olegsait.css">
+</head>
+<body>
+  <div class="menu"><div class="container"><div class="menu_inner">
+    <div class="logo">
+  <a href="oleg.html">
+    <img src="imgoleg/oleg.png" alt="логотип">
+  </a>
+</div>
+    <ul class="nav">
+      <li><a href="services.html">Сервис</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li><a href="works.html">Наши работы</a></li>
+      <li><a href="reviews.html">Отзывы</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+    </ul>
+  </div></div></div>
+
+  <section class="glava">
+    <div class="vnutri">
+      <h1>О нас</h1>
+      <p>10+ лет опыта, профильные инженеры, профессиональная диагностика.</p>
+    </div>
+  </section>
+
+  <section class="features section">
+    <div class="vnutri features_grid">
+      <article class="feature">
+        <i class="fas fa-user-check"></i>
+        <h3>Опытная команда</h3>
+        <p>Каждый мастер — специалист по своей линейке устройств.</p>
+      </article>
+      <article class="feature">
+        <i class="fas fa-certificate"></i>
+        <h3>Качество</h3>
+        <p>Стандарты работы и контроль качества на каждом этапе.</p>
+      </article>
+      <article class="feature">
+        <i class="fas fa-handshake"></i>
+        <h3>Честность</h3>
+        <p>Прозрачные цены, без «накруток» и скрытых услуг.</p>
+      </article>
+    </div>
+  </section>
+
+  <a href="#" class="to-top" aria-label="Наверх">↑</a>
+  <script>
+    (function () {
+      const page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('.nav a').forEach(a => {
+        const href = (a.getAttribute('href') || '').toLowerCase();
+        if (href === page) a.classList.add('active'); else a.classList.remove('active');
+      });
+    })();
+  </script>
+</body>
+</html>

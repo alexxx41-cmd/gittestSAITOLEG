@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Сервис — Ремонт смартфонов</title>
+  <link rel="stylesheet" href="css/olegsait/all.min.css">
+  <link rel="stylesheet" href="css/olegsait/fontawesome.min.css">
+  <link rel="stylesheet" href="css/olegsait/olegsait.css">
+</head>
+<body>
+  <div class="menu">
+    <div class="container"> 
+      <div class="menu_inner">
+        <div class="logo">
+      <a href="oleg.html">
+      <img src="imgoleg/oleg.png" alt="логотип">
+      </a>
+</div>
+        <ul class="nav">
+          <li><a href="services.html">Сервис</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="works.html">Наши работы</a></li>
+          <li><a href="reviews.html">Отзывы</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section class="glava">
+    <div class="vnutri">
+      <h1>Наши услуги</h1>
+      <p>Диагностика, замена экрана, аккумулятора, ремонт после влаги и многое другое.</p>
+      <div class="cta">
+        <a class="btn" href="https://t.me/RemontSmartfonRf" target="_blank" rel="noopener noreferrer">Записаться на ремонт</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features section">
+    <div class="vnutri features_grid">
+      <article class="feature">
+        <i class="fas fa-bolt"></i>
+        <h3>Срочный ремонт</h3>
+        <p>Большинство работ — в день обращения.</p>
+      </article>
+      <article class="feature">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Гарантия</h3>
+        <p>Гарантия на запчасти и работу.</p>
+      </article>
+      <article class="feature">
+        <i class="fas fa-tools"></i>
+        <h3>Оригинальные детали</h3>
+        <p>Проверенные поставщики и тестирование.</p>
+      </article>
+    </div>
+  </section>
+
+  <a href="#" class="to-top" aria-label="Наверх">↑</a>
+
+  <script>
+    (function () {
+      const page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('.nav a').forEach(a => {
+        const href = (a.getAttribute('href') || '').toLowerCase();
+        if (href === page) a.classList.add('active'); else a.classList.remove('active');
+      });
+    })();
+  </script>
+</body>
+</html>
