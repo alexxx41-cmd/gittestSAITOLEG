@@ -24,7 +24,7 @@
 .body{
   margin: 0;
   background: var(--grad) fixed;
-  background-attachment: fixed; /* приятный параллакс при прокрутке */
+  background-attachment: fixed; /* параллакс при прокрутке */
   color: var(--ink);
 }
 
